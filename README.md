@@ -9,20 +9,22 @@ An indicator appears when there are uncommitted changes, keeping the prompt info
 <img  alt="ZSH theme example" src="resources/example.gif" width="625">
 
 ## Installation
-Select and follow the installation instructions for a shell framework or your framework of choice.
+Select and follow the installation instructions for a shell framework of your choice.
 
 <details>
     <summary>Plain (without a framework)</summary>
 
 ### Without Framework
-1. Download the theme file `zsh-theme.zsh` to any directory. For example, to `~/.zshrc.vstelmakh.plugin.zsh`:
+1. Download the theme file `zsh-theme.zsh` to any directory.
+The next shell command will download the theme as the `~/.zshrc.vstelmakh.plugin.zsh` file:
 ```shell
-curl -fL --create-dirs \
+curl -fL# --create-dirs \
     -o "${HOME}/.zshrc.vstelmakh.plugin.zsh" \
     "https://raw.githubusercontent.com/vstelmakh/zsh-theme/main/zsh-theme.zsh"
 ```
 
-2. Source the theme in `~/.zshrc` file:
+2. Source the theme in `~/.zshrc` file.
+The next shell command will source the theme in the `~/.zshrc` file:
 ```shell
 echo -e "\nsource ${HOME}/.zshrc.vstelmakh.plugin.zsh\n" >> "${ZSH_CONFIG}"
 ```
@@ -33,15 +35,17 @@ echo -e "\nsource ${HOME}/.zshrc.vstelmakh.plugin.zsh\n" >> "${ZSH_CONFIG}"
 <details>
     <summary>Oh My ZSH</summary>
 
-### [Oh My ZSH](https://ohmyz.sh/)
-1. Download the theme file `zsh-theme.zsh` to Oh My ZSH custom theme directory:
+### Oh My ZSH
+1. Download the theme file `zsh-theme.zsh` to Oh My ZSH custom theme directory.
+The next shell command will download the theme to the OMZ custom themes location with the name `vstelmakh.zsh-theme`: 
 ```shell
-curl -fL --create-dirs \
+curl -fL# --create-dirs \
     -o "$([ -z "${ZSH_CUSTOM}" ] && echo "${ZSH}/custom" || echo "${ZSH_CUSTOM}")/themes/vstelmakh.zsh-theme" \
     "https://raw.githubusercontent.com/vstelmakh/zsh-theme/main/zsh-theme.zsh"
 ```
 
-2. Configure theme `ZSH_THEME=vstelmakh` in `~/.zshrc` file:
+2. Configure theme `ZSH_THEME=vstelmakh` in `~/.zshrc` file.
+The next shell command will update the theme in the `~/.zshrc` file:
 ```shell
 sed -i -E "s/^\(\s*ZSH_THEME=\)\(.*\)/\1\"vstelmakh\"/g" "${HOME}/.zshrc"
 ```
