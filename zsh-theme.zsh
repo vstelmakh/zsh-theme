@@ -1,5 +1,23 @@
 # Custom ZSH theme of Volodymyr Stelmakh
+# https://github.com/vstelmakh/zsh-theme
+# MIT License
 
+# ZSH Prompt-Expansion Reference
+# https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
+# git:
+# %s - vcs type
+# %b - branch
+# %a - action (rebase/merge)
+# %m - misc content (set with git-check hook)
+# prompt:
+# %F - foreground color
+# %f - reset color
+# %B - bold
+# %b - reset bold
+# %~ - current path
+# %(::) - prompt conditional - %(condition:true:false)
+
+# Hook to set Git reference to misc (%m) content
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats "%%F{blue}[%m%%F{blue}]%%f "
