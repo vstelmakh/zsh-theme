@@ -41,8 +41,8 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     fi
 }
 
-autoload -U add-zsh-hook
-add-zsh-hook precmd theme_precmd
+setopt prompt_subst
+precmd_functions+=( theme_precmd )
 theme_precmd () {
     vcs_info
 }
