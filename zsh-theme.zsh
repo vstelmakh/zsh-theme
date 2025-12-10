@@ -41,7 +41,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     }
 
     # - branch name
-    # - or tag name (if tag)
+    # - or tag name
     # - or short SHA of the commit
     local REF
     REF=$(git symbolic-ref --short HEAD 2> /dev/null) \

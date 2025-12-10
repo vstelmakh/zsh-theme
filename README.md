@@ -1,12 +1,12 @@
 # ZSH Theme
-<img  alt="ZSH theme example" src="resources/example.png" width="625">
+<img alt="ZSH theme example" src="resources/example.png" width="625">
 
 A simple and minimalistic ZSH theme tailored to my personal workflow.
 It provides a compact, clean prompt showing the last command's exit status and the current working directory.
 When inside a Git repository, it displays the active Git reference (branch, tag or commit hash), automatically truncating long branch names.
 An indicator appears when there are uncommitted changes, keeping the prompt informative without clutter.
 
-<img  alt="ZSH theme example" src="resources/example.gif" width="625">
+<img alt="ZSH theme example" src="resources/example.gif" width="625">
 
 ## Installation
 Select and follow the installation instructions for a shell framework of your choice.
@@ -55,7 +55,7 @@ sed -i -E "s/^\(\s*ZSH_THEME=\)\(.*\)/\1\"vstelmakh\"/g" "${HOME}/.zshrc"
 
 ## Contributing
 Contributions are welcome - especially bug fixes and improvements to stability.
-However, not all changes may be accepted, as the goal is to keep the theme simple and aligned with my personal workflow.
+However, not all changes may be accepted, as the goal is to keep the theme simple and aligned with my personal preferences.
 If you are looking for additional styling options or customizations, please fork the repository and adapt the theme to your needs.
 
 ## Credits
