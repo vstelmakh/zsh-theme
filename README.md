@@ -40,7 +40,7 @@ echo -e "\nsource ${HOME}/.zshrc.vstelmakh.plugin.zsh\n" >> "${HOME}/.zshrc"
 The next shell command will download the theme to the OMZ custom themes location with the name `vstelmakh.zsh-theme`: 
 ```shell
 curl -fL# --create-dirs \
-    -o "$([ -z "${ZSH_CUSTOM}" ] && echo "${ZSH}/custom" || echo "${ZSH_CUSTOM}")/themes/vstelmakh.zsh-theme" \
+    -o "${ZSH_CUSTOM:-${ZSH}/custom}/themes/vstelmakh.zsh-theme" \
     "https://raw.githubusercontent.com/vstelmakh/zsh-theme/main/zsh-theme.zsh"
 ```
 
