@@ -26,7 +26,7 @@ curl -fL# --create-dirs \
 2. Source the theme in `~/.zshrc` file.
 The next shell command will source the theme in the `~/.zshrc` file:
 ```shell
-echo -e "\nsource ${HOME}/.zshrc.vstelmakh.plugin.zsh\n" >> "${ZSH_CONFIG}"
+echo -e "\nsource ${HOME}/.zshrc.vstelmakh.plugin.zsh\n" >> "${HOME}/.zshrc"
 ```
 
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
