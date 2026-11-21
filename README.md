@@ -47,7 +47,7 @@ curl -fL# --create-dirs \
 2. Configure theme `ZSH_THEME=vstelmakh` in `~/.zshrc` file.
 The next shell command will update the theme in the `~/.zshrc` file:
 ```shell
-sed -i -E "s/^\(\s*ZSH_THEME=\)\(.*\)/\1\"vstelmakh\"/g" "${HOME}/.zshrc"
+sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" && rm "${HOME}/.zshrc.bak"
 ```
 
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
