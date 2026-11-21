@@ -6,7 +6,7 @@ It provides a compact, clean prompt showing the last command's exit status and t
 When inside a Git repository, it displays the active Git reference (branch, tag or commit hash), automatically truncating long branch names.
 An indicator appears when there are uncommitted changes, keeping the prompt informative without clutter.
 
-<img alt="ZSH theme example" src="resources/example.gif" width="625">
+<img alt="ZSH theme demo in terminal session" src="resources/example.gif" width="625">
 
 ## Installation
 Select and follow the installation instructions for a shell framework of your choice.
