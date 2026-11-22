@@ -53,6 +53,9 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
 </details>
 
+> [!NOTE]
+> To update the theme, run the download command from step 1 again and restart your terminal.
+
 ## Configuration
 The theme is configured with `zstyle` in the `~/.zshrc` file. Add the configuration before the theme is loaded.
 
