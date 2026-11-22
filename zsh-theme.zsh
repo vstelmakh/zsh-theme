@@ -21,6 +21,7 @@
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats "%%F{blue}[%m%%F{blue}]%%f "
+zstyle ':vcs_info:*' actionformats "%%F{blue}[%m%%F{blue}]%%f " # action is added to misc by hook
 zstyle ':vcs_info:git*+set-message:*' hooks git-check
 +vi-git-check() {
     local string_truncate() {
@@ -50,12 +51,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     || return 0
 
     REF=$(string_truncate 15 "…" "${REF}")
-    hook_com[misc]+="%F{red}${REF}"
+    hook_com[misc]="%F{red}${REF}" # replace default misc content (e.g. rebase patch info)
 
     local STATUS
     STATUS=$(git status --porcelain 2> /dev/null | tail -n 1)
     if [[ -n $STATUS ]]; then
         hook_com[misc]+=" %F{yellow}•" # repository has changes
+    fi
+
+    # short action name (e.g. rebase-i -> rebase, cherry-pick -> cherry)
+    local ACTION=${hook_com[action]%%[-/]*}
+    if [[ -f ${vcs_comm[gitdir]}/REVERT_HEAD ]]; then
+        ACTION="revert" # not detected by vcs_info
+    fi
+    if [[ -n $ACTION ]]; then
+        hook_com[misc]+=" %F{yellow}${ACTION}"
     fi
 }
 
