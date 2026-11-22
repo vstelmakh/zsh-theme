@@ -15,6 +15,7 @@
 # %B - bold
 # %b - reset bold
 # %~ - current path
+# %1~ - last directory of current path
 # %(::) - prompt conditional - %(condition:true:false)
 
 # Hook to set Git reference to misc (%m) content
@@ -33,7 +34,6 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     || REF=$(git rev-parse --short HEAD 2> /dev/null) \
     || return 0
 
-    # truncate long reference, configurable with: zstyle ':vstelmakh:theme' ref-max-length <number>
     local REF_MAX_LENGTH
     zstyle -s ':vstelmakh:theme' ref-max-length REF_MAX_LENGTH
     if [[ $REF_MAX_LENGTH != <-> ]]; then
@@ -64,12 +64,15 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
 setopt prompt_subst
 autoload -Uz add-zsh-hook
 theme_precmd () {
+    theme_workdir='%1~'
+    zstyle -t ':vstelmakh:theme' full-path && theme_workdir='%~'
+
     vcs_info
 }
 add-zsh-hook precmd theme_precmd # adds hook only once, even if theme sourced again
 
 PROMPT="%B" # text style bold
 PROMPT+="%(?:%F{green}:%F{red})➜ " # previous command status
-PROMPT+="%F{cyan}%~ " # workdir
+PROMPT+='%F{cyan}${theme_workdir} ' # workdir
 PROMPT+='${vcs_info_msg_0_}' # git reference (if git repo)
 PROMPT+="%b%f%u" # reset all text styles

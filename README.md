@@ -56,6 +56,13 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 ## Configuration
 The theme is configured with `zstyle` in the `~/.zshrc` file. Add the configuration before the theme is loaded.
 
+### Full directory path
+Only the last directory of the current path is shown by default.
+To show the full path instead, add the next line to the `~/.zshrc` file:
+```shell
+zstyle ':vstelmakh:theme' full-path yes
+```
+
 ### Git reference max length
 Long Git references (branch or tag names) are truncated to 15 characters by default.
 To change the max length, add the next line to the `~/.zshrc` file. Use `0` to disable truncation:

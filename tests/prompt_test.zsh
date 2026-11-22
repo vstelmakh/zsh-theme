@@ -12,6 +12,29 @@ test_status_fail() {
     assert_contains $'\e[31m➜' "$(print -P -- "$PROMPT")"
 }
 
+# Working directory
+
+test_workdir_last_directory() {
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36mc ' "$(rendered_prompt)"
+}
+
+test_workdir_home() {
+    assert_contains $'\e[36m~ ' "$(rendered_prompt)"
+}
+
+test_workdir_full_path() {
+    zstyle ':vstelmakh:theme' full-path yes
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36m~/a/b/c ' "$(rendered_prompt)"
+}
+
+test_workdir_full_path_disabled() {
+    zstyle ':vstelmakh:theme' full-path no
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36mc ' "$(rendered_prompt)"
+}
+
 # Git reference
 
 test_no_repo() {
@@ -158,6 +181,11 @@ test_precmd_hook_added_once() {
 }
 
 # Helpers
+
+rendered_prompt() {
+    theme_precmd
+    print -P -- "$PROMPT"
+}
 
 git_segment() {
     theme_precmd
