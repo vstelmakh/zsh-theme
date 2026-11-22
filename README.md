@@ -53,6 +53,21 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
 </details>
 
+<details>
+    <summary>Plugin managers</summary>
+
+### Plugin managers
+The repository provides `zsh-theme.plugin.zsh` and `vstelmakh.zsh-theme` entry points, so it can be loaded directly from GitHub.
+Add the line for your plugin manager to `~/.zshrc` (antidote: to `~/.zsh_plugins.txt`) and restart your terminal.
+
+| Plugin manager | Configuration |
+|----------------|---------------|
+| [antidote](https://github.com/mattmc3/antidote) | `vstelmakh/zsh-theme` |
+| [zinit](https://github.com/zdharma-continuum/zinit) | `zinit light vstelmakh/zsh-theme` |
+| [zplug](https://github.com/zplug/zplug) | `zplug "vstelmakh/zsh-theme", as:theme` |
+| [antigen](https://github.com/zsh-users/antigen) | `antigen theme vstelmakh/zsh-theme vstelmakh` |
+</details>
+
 ## Uninstallation
 Select and follow the uninstallation instructions for the shell framework used during installation.
 
