@@ -8,7 +8,7 @@ An indicator appears when there are uncommitted changes, keeping the prompt info
 
 <img alt="ZSH theme demo in terminal session" src="resources/example.gif" width="625">
 
-## Installation
+## Install
 Select and follow the installation instructions for a shell framework of your choice.
 
 <details>
@@ -56,7 +56,7 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 > [!NOTE]
 > To update the theme, run the download command from step 1 again and restart your terminal.
 
-## Configuration
+## Configure
 The theme is configured with `zstyle` in the `~/.zshrc` file. Add the configuration before the theme is loaded.
 
 ### Full directory path
@@ -73,7 +73,7 @@ To change the max length, add the next line to the `~/.zshrc` file. Use `0` to d
 zstyle ':vstelmakh:theme' ref-max-length 20
 ```
 
-## Uninstallation
+## Uninstall
 Select and follow the uninstallation instructions for the shell framework used during installation.
 
 <details>
