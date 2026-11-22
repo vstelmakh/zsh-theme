@@ -110,6 +110,13 @@ test_action_revert_multiple_commits() {
     assert_equals "%F{blue}[%F{red}main %F{yellow}• %F{yellow}revert%F{blue}]%f " "$(git_segment)"
 }
 
+# Theme loading
+
+test_precmd_hook_added_once() {
+    source "$THEME_FILE" # second time, first is done by test runner
+    assert_equals "theme_precmd" "${precmd_functions[*]}"
+}
+
 # Helpers
 
 git_segment() {

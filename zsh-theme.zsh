@@ -70,10 +70,11 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
 }
 
 setopt prompt_subst
-precmd_functions+=( theme_precmd )
+autoload -Uz add-zsh-hook
 theme_precmd () {
     vcs_info
 }
+add-zsh-hook precmd theme_precmd # adds hook only once, even if theme sourced again
 
 PROMPT="%B" # text style bold
 PROMPT+="%(?:%F{green}:%F{red})➜ " # previous command status
