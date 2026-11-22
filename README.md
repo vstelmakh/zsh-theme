@@ -53,6 +53,47 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
 </details>
 
+## Uninstallation
+Select and follow the uninstallation instructions for the shell framework used during installation.
+
+<details>
+    <summary>Plain (without a framework)</summary>
+
+### Without Framework
+1. Remove the theme source line from `~/.zshrc` file.
+The next shell command will remove the line from the `~/.zshrc` file:
+```shell
+sed -i.bak -E '/^source .*\/\.zshrc\.vstelmakh\.plugin\.zsh$/d' "${HOME}/.zshrc" && rm "${HOME}/.zshrc.bak"
+```
+
+2. Delete the theme file.
+The next shell command will delete the `~/.zshrc.vstelmakh.plugin.zsh` file:
+```shell
+rm "${HOME}/.zshrc.vstelmakh.plugin.zsh"
+```
+
+3. Restart your terminal to apply the changes.
+</details>
+
+<details>
+    <summary>Oh My ZSH</summary>
+
+### Oh My ZSH
+1. Configure your previous theme in `~/.zshrc` file.
+The next shell command will set the theme to the Oh My ZSH default `robbyrussell`. Replace it with your previous theme if needed:
+```shell
+sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"robbyrussell"/' "${HOME}/.zshrc" && rm "${HOME}/.zshrc.bak"
+```
+
+2. Delete the theme file from Oh My ZSH custom theme directory.
+The next shell command will delete the `vstelmakh.zsh-theme` file:
+```shell
+rm "${ZSH_CUSTOM:-${ZSH}/custom}/themes/vstelmakh.zsh-theme"
+```
+
+3. Restart your terminal to apply the changes.
+</details>
+
 ## Contributing
 Contributions are welcome - especially bug fixes and improvements to stability.
 However, not all changes may be accepted, as the goal is to keep the theme simple and aligned with my personal preferences.
