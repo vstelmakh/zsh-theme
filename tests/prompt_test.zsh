@@ -40,6 +40,34 @@ test_branch_truncated() {
     assert_equals "%F{blue}[%F{red}feature-long-b…%F{blue}]%f " "$(git_segment)"
 }
 
+test_branch_truncated_configured_length() {
+    zstyle ':vstelmakh:theme' ref-max-length 10
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-l…%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncated_configured_length_one() {
+    zstyle ':vstelmakh:theme' ref-max-length 1
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}…%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncation_disabled() {
+    zstyle ':vstelmakh:theme' ref-max-length 0
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-long-branch-name%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncated_invalid_length() {
+    zstyle ':vstelmakh:theme' ref-max-length abc
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-long-b…%F{blue}]%f " "$(git_segment)"
+}
+
 test_tag() {
     repo_init
     git tag v1.0.0
