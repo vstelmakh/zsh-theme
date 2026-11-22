@@ -4,7 +4,7 @@
 # Each test function runs in a new zsh with the theme sourced, inside an empty temporary directory.
 
 DIR_TESTS=${0:A:h}
-THEME_FILE=${DIR_TESTS:h}/zsh-theme.zsh
+export THEME_FILE=${DIR_TESTS:h}/zsh-theme.zsh # exported to be available in tests
 TEST_FUNCTION_PREFIX='test_'
 
 # isolate git from user and system configuration

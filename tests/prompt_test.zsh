@@ -53,6 +53,18 @@ test_commit_sha() {
     assert_equals "%F{blue}[%F{red}$(git rev-parse --short HEAD)%F{blue}]%f " "$(git_segment)"
 }
 
+test_branch_percent_sign() {
+    repo_init
+    git checkout -q -b 'fix-100%-bug'
+    assert_equals "%F{blue}[%F{red}fix-100%%-bug%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_percent_sign_truncated() {
+    repo_init
+    git checkout -q -b 'feature-100%-done-now'
+    assert_equals "%F{blue}[%F{red}feature-100%%-d…%F{blue}]%f " "$(git_segment)"
+}
+
 # Uncommitted changes
 
 test_changes_modified() {
@@ -108,6 +120,13 @@ test_action_revert_multiple_commits() {
     print x > other-file && git add other-file && git commit -q -m "x"
     git revert --no-edit HEAD~2 HEAD~1 &> /dev/null
     assert_equals "%F{blue}[%F{red}main %F{yellow}• %F{yellow}revert%F{blue}]%f " "$(git_segment)"
+}
+
+# Theme loading
+
+test_precmd_hook_added_once() {
+    source "$THEME_FILE" # second time, first is done by test runner
+    assert_equals "theme_precmd" "${precmd_functions[*]}"
 }
 
 # Helpers
