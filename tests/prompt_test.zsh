@@ -12,6 +12,29 @@ test_status_fail() {
     assert_contains $'\e[31m➜' "$(print -P -- "$PROMPT")"
 }
 
+# Working directory
+
+test_workdir_last_directory() {
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36mc ' "$(rendered_prompt)"
+}
+
+test_workdir_home() {
+    assert_contains $'\e[36m~ ' "$(rendered_prompt)"
+}
+
+test_workdir_full_path() {
+    zstyle ':vstelmakh:theme' full-path yes
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36m~/a/b/c ' "$(rendered_prompt)"
+}
+
+test_workdir_full_path_disabled() {
+    zstyle ':vstelmakh:theme' full-path no
+    mkdir -p a/b/c && cd a/b/c
+    assert_contains $'\e[36mc ' "$(rendered_prompt)"
+}
+
 # Git reference
 
 test_no_repo() {
@@ -35,6 +58,34 @@ test_branch_max_length() {
 }
 
 test_branch_truncated() {
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-long-b…%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncated_configured_length() {
+    zstyle ':vstelmakh:theme' ref-max-length 10
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-l…%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncated_configured_length_one() {
+    zstyle ':vstelmakh:theme' ref-max-length 1
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}…%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncation_disabled() {
+    zstyle ':vstelmakh:theme' ref-max-length 0
+    repo_init
+    git checkout -q -b feature-long-branch-name
+    assert_equals "%F{blue}[%F{red}feature-long-branch-name%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_truncated_invalid_length() {
+    zstyle ':vstelmakh:theme' ref-max-length abc
     repo_init
     git checkout -q -b feature-long-branch-name
     assert_equals "%F{blue}[%F{red}feature-long-b…%F{blue}]%f " "$(git_segment)"
@@ -130,6 +181,11 @@ test_precmd_hook_added_once() {
 }
 
 # Helpers
+
+rendered_prompt() {
+    theme_precmd
+    print -P -- "$PROMPT"
+}
 
 git_segment() {
     theme_precmd

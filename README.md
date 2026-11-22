@@ -8,7 +8,7 @@ An indicator appears when there are uncommitted changes, keeping the prompt info
 
 <img alt="ZSH theme demo in terminal session" src="resources/example.gif" width="625">
 
-## Installation
+## Install
 Select and follow the installation instructions for a shell framework of your choice.
 
 <details>
@@ -53,7 +53,27 @@ sed -i.bak -E 's/^([[:space:]]*ZSH_THEME=).*/\1"vstelmakh"/' "${HOME}/.zshrc" &&
 3. Restart your terminal or run `source ~/.zshrc` to apply the changes.
 </details>
 
-## Uninstallation
+> [!NOTE]
+> To update the theme, run the download command from step 1 again and restart your terminal.
+
+## Configure
+The theme is configured with `zstyle` in the `~/.zshrc` file. Add the configuration before the theme is loaded.
+
+### Full directory path
+Only the last directory of the current path is shown by default.
+To show the full path instead, add the next line to the `~/.zshrc` file:
+```shell
+zstyle ':vstelmakh:theme' full-path yes
+```
+
+### Git reference max length
+Long Git references (branch or tag names) are truncated to 15 characters by default.
+To change the max length, add the next line to the `~/.zshrc` file. Use `0` to disable truncation:
+```shell
+zstyle ':vstelmakh:theme' ref-max-length 20
+```
+
+## Uninstall
 Select and follow the uninstallation instructions for the shell framework used during installation.
 
 <details>
