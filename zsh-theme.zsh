@@ -51,6 +51,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     || return 0
 
     REF=$(string_truncate 15 "…" "${REF}")
+    REF=${REF//\%/%%} # escape % to not interpret it as prompt sequence
     hook_com[misc]="%F{red}${REF}" # replace default misc content (e.g. rebase patch info)
 
     local STATUS

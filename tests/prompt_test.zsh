@@ -53,6 +53,18 @@ test_commit_sha() {
     assert_equals "%F{blue}[%F{red}$(git rev-parse --short HEAD)%F{blue}]%f " "$(git_segment)"
 }
 
+test_branch_percent_sign() {
+    repo_init
+    git checkout -q -b 'fix-100%-bug'
+    assert_equals "%F{blue}[%F{red}fix-100%%-bug%F{blue}]%f " "$(git_segment)"
+}
+
+test_branch_percent_sign_truncated() {
+    repo_init
+    git checkout -q -b 'feature-100%-done-now'
+    assert_equals "%F{blue}[%F{red}feature-100%%-d…%F{blue}]%f " "$(git_segment)"
+}
+
 # Uncommitted changes
 
 test_changes_modified() {
