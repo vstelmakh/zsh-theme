@@ -45,9 +45,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-check
     REF=${REF//\%/%%} # escape % to not interpret it as prompt sequence
     hook_com[misc]="%F{red}${REF}" # replace default misc content (e.g. rebase patch info)
 
-    local STATUS
-    STATUS=$(git status --porcelain 2> /dev/null | tail -n 1)
-    if [[ -n $STATUS ]]; then
+    if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
         hook_com[misc]+=" %F{yellow}•" # repository has changes
     fi
 
